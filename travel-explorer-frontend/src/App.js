@@ -1,9 +1,8 @@
-import './App.css';
+import './styles/App.css';
+import './styles/UserForm.css';
 import items from './dummydata';
 import UserForm from './components/UserForm';
-import './styles/UserForm.css';
 import { useState, useEffect } from 'react';
-import axios from "axios";
 
 
 
@@ -23,6 +22,7 @@ function App() {
       <h2>{message}</h2>
       {/* to render components */}
       <UserForm />
+
     </div>
 
   );

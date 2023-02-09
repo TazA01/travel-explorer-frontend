@@ -1,9 +1,19 @@
 import React from "react";
+import PropTypes from "prop-types";
+import '../styles/Cities.css';
 
-const City = (props) => {
-    return (<div>
-        <h3>{props.name}</h3>
-    </div>)
+const Cities = (props) => {
+    return (
+        <div className="main-cointainer">
+            <div id="test">
+                <h4>{props.cityName}, { props.country}</h4>
+                <div>Full Location: {props.location}</div>
+                <div>
+                    {props.places}
+                </div>
+            </div>
+        </div>
+    )
 }
 
-export default City;
+export default Cities;
