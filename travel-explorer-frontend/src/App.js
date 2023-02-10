@@ -16,6 +16,7 @@ function App() {
       .then((data) => setMessage(data.message));
   }, []);
 
+
   return (
     <div>
       <h1>Travel Explorer</h1>

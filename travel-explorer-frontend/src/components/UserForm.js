@@ -78,15 +78,12 @@ const UserForm = () => {
             finalArr.push(locationDataArr);
         }
 
-
         return finalArr;
     }
 
 
     // ----------------MAKE SURE TO PUT DATA PARAM HERE TO USE BACKEND----------------------//
-    const cityComponents = displayCityComponents(data);
-
-
+    const cityComponents = displayCityComponents(items);
 
     const form = (
         <form onSubmit={handleSubmit} className="UserForm">
@@ -141,23 +138,41 @@ const UserForm = () => {
             <button>Generate Random Destinations!</button>
         </form>)
 
+    const [cityList, setCityList] = useState("");
+
+    const SavedCitiesClick = async () => {
+
+        //e.preventDefault();
+
+        axios.get("http://localhost:3001/students").then((response) => {
+            console.log(response)
+            setCityList(response)
+            return response;
+
+        })
+    };
+
+
+
+
+    // ------------------------------RETURN STATEMENT------------------------------------//
     return (
-        <div>
-            {form}
+        <div> {form} <div>
 
-            <div>
-
-                {cityComponents.map(elem => (
-                    <Cities
-                        cityName={elem[0]}
-                        location={elem[1]}
-                        country={elem[2]}
-                        image={elem[3]}
-                        places={<Places places={elem[4]} />} />
-                ))}
+            <button onClick={SavedCitiesClick}>See Saved Cities</button>
 
 
-            </div>
+            {cityComponents.map(elem => (
+                <Cities key={elem[1]}
+                    cityName={elem[0]}
+                    location={elem[1]}
+                    country={elem[2]}
+                    image={elem[3]}
+                    places={<Places placesInfo={elem[4]} />} />
+            ))}
+
+
+        </div>
 
         </div>
     )

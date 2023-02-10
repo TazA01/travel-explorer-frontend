@@ -3,21 +3,12 @@ import PropTypes from "prop-types";
 import '../styles/Places.css';
 
 
-// const Places = (props) => {
 
-//     return (
-//         <div className="main-cointainer">
-//             <div>
-//                 <div>City: {props.place}</div>
-//             </div>
-//         </div>
-//     )
-// }
-
-const Places = ({ places }) => {
-    return (places.map(i => {
+const Places = ({ placesInfo }) => {
+    return (placesInfo.map(i => {
         return (
-            <div>
+
+            <div key={i[0]}>
                 <div id="placeDiv">
                     Place Name: {i[0]}
                     <div>
