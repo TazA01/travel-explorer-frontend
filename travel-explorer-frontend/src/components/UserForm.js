@@ -138,28 +138,44 @@ const UserForm = () => {
             <button>Generate Random Destinations!</button>
         </form>)
 
-    const [cityList, setCityList] = useState("");
+    const [cityList, setCityList] = useState([]);
 
-    const SavedCitiesClick = async () => {
-
-        //e.preventDefault();
-
-        axios.get("http://localhost:3001/students").then((response) => {
-            console.log(response)
-            setCityList(response)
-            return response;
-
-        })
+    let savedCitiesClick = async () => {
+        let response = await axios.get("http://localhost:5000/cities/save");
+        return response.data;
     };
 
+    const convertData = async () => {
+        let res = await savedCitiesClick();
+        console.log('res', res)
 
+        let savedCitiesArr = [];
+        for (let elem in res) {
+            let oneCityArr = [res[elem]['city'], res[elem]['country'].trim(), res[elem]['fullLocation'], res[elem]['image'], res[elem]['places']];
+            savedCitiesArr.push(oneCityArr)
+        };
+        console.log('savedCitiesArr', savedCitiesArr)
+        setCityList(savedCitiesArr)
+        //console.log('cityListState', cityList)
+        return (savedCitiesArr)
+    }
 
+    const seeSavedCities = (
+        cityList.map(elem => (
+            <Cities key={elem[1]}
+                cityName={elem[0]}
+                location={elem[1]}
+                country={elem[2]}
+                image={elem[3]}
+                places={<Places placesInfo={elem[4]} />} />
+        ))
+    )
 
-    // ------------------------------RETURN STATEMENT------------------------------------//
+    // -----------------------------------RETURN STATEMENT-------------------------------------------//
     return (
         <div> {form} <div>
+            <div><button onClick={convertData}>See Saved Cities {seeSavedCities}</button></div>
 
-            <button onClick={SavedCitiesClick}>See Saved Cities</button>
 
 
             {cityComponents.map(elem => (

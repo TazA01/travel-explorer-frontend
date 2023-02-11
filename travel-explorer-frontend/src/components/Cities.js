@@ -17,7 +17,7 @@ const Cities = (props) => {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({
-                "name": props.cityName,
+                "city": props.cityName,
                 "country": props.country,
                 "fullLocation": props.location,
                 "image": props.image,
