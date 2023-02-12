@@ -4,11 +4,12 @@ import PropTypes from "prop-types";
 import Cities from "./Cities";
 import Places from "./Places";
 import items from "../dummydata";
+import SavedCities from "./SavedCities";
 
 const UserForm = () => {
 
     const [entertainment, setEntertainment] = useState("");
-    const [leisure, setLeisure] = useState("");
+    const [accommodation, setAccommodation] = useState("");
     const [tourism, setTourism] = useState("");
     const [catering, setCatering] = useState("");
     const [natural, setNatural] = useState("");
@@ -25,7 +26,7 @@ const UserForm = () => {
                 },
                 body: JSON.stringify({
                     entertainment: entertainment,
-                    leisure: leisure,
+                    accommodation: accommodation,
                     tourism: tourism,
                     catering: catering,
                     natural: natural
@@ -38,7 +39,7 @@ const UserForm = () => {
 
             if (res.status === 200) {
                 setEntertainment("");
-                setLeisure("");
+                setAccommodation("");
                 setTourism("");
                 setCatering("");
                 setNatural("");
@@ -83,11 +84,11 @@ const UserForm = () => {
 
 
     // ----------------MAKE SURE TO PUT DATA PARAM HERE TO USE BACKEND----------------------//
-    const cityComponents = displayCityComponents(items);
+    const cityComponents = displayCityComponents(data);
 
     const form = (
         <form onSubmit={handleSubmit} className="UserForm">
-            <label htmlFor="entertainment">What Do You Like to Do for Entertainment?:</label>
+            <label htmlFor="entertainment">What Do You Like to Do for Entertainment?</label>
             <select id="entertainment" name="entertainment" onChange={(e) => setEntertainment(e.target.value)}>
                 <option value="entertainment">Surprise Me</option>
                 <option value="entertainment.zoo">Zoo</option>
@@ -96,14 +97,16 @@ const UserForm = () => {
                 <option value="entertainment.theme_park">Theme Park</option>
                 <option value="entertainment.aquarium">Aquarium</option>
             </select>
-            <label htmlFor="leisure">What Do You Like to Do for Leisure?:</label>
-            <select id="leisure" name="leisure" onChange={(e) => setLeisure(e.target.value)}>
-                <option value="leisure">Surprise Me</option>
-                <option value="leisure.picnic">Picnic</option>
-                <option value="leisure.spa">Spa</option>
-                <option value="leisure.playground">Playground</option>
+            <label htmlFor="accommodation">Where Would You Like To Stay?</label>
+            <select id="accommodation" name="accommodation" onChange={(e) => setAccommodation(e.target.value)}>
+                <option value="accommodation">Surprise Me</option>
+                <option value="accommodation.hotel">Hotel</option>
+                <option value="accommodation.motel">Motel</option>
+                <option value="accommodation.hostel">Hostel</option>
+                <option value="accommodation.chalet">Chalet</option>
+                <option value="accommodation.apartment">Apartment</option>
             </select>
-            <label htmlFor="natural">What Would You Like to See in Nature?:</label>
+            <label htmlFor="natural">What Would You Like to See in Nature?</label>
             <select id="natural" name="natural" onChange={(e) => setNatural(e.target.value)}>
                 <option value="natural">Surprise Me</option>
                 <option value="natural.forest">Forest</option>
@@ -111,7 +114,7 @@ const UserForm = () => {
                 <option value="natural.mountain">Mountain</option>
                 <option value="national_park">National Park</option>
             </select>
-            <label htmlFor="tourism">What Would You Like to See as a Tourist?:</label>
+            <label htmlFor="tourism">What Would You Like to See as a Tourist?</label>
             <select id="tourism" name="tourism" onChange={(e) => setTourism(e.target.value)}>
                 <option value="tourism.sights">Surprise Me</option>
                 <option value="tourism.sights.place_of_worship">Places of Worship</option>
@@ -120,7 +123,7 @@ const UserForm = () => {
                 <option value="tourism.sights.memorial">Memorials</option>
                 <option value="tourism.attraction.artwork">Art</option>
             </select>
-            <label htmlFor="catering">What Kind of Food Would You Like to Eat?:</label>
+            <label htmlFor="catering">What Kind of Food Would You Like to Eat?</label>
             <select id="catering" name="catering" onChange={(e) => setCatering(e.target.value)}>
                 <option value="catering">Surprise Me</option>
                 <option value="catering.restaurant.mediterranean">Mediterranean</option>
@@ -142,40 +145,63 @@ const UserForm = () => {
 
     let savedCitiesClick = async () => {
         let response = await axios.get("http://localhost:5000/cities/save");
+        if (response.data == false) {
+            alert('You Have No Saved Cities. Please Save Cities You Want To To Visit!')
+        };
+
         return response.data;
     };
 
-    const convertData = async () => {
+    const convertsavedCitiesData = async () => {
         let res = await savedCitiesClick();
-        console.log('res', res)
+        //console.log('res', res)
 
         let savedCitiesArr = [];
         for (let elem in res) {
-            let oneCityArr = [res[elem]['city'], res[elem]['country'].trim(), res[elem]['fullLocation'], res[elem]['image'], res[elem]['places']];
+            let oneCityArr = [res[elem]['city'], res[elem]['country'].trim(), res[elem]['fullLocation'], res[elem]['image'], res[elem]['places'], res[elem]['_id']];
             savedCitiesArr.push(oneCityArr)
         };
-        console.log('savedCitiesArr', savedCitiesArr)
+        //console.log('savedCitiesArr', savedCitiesArr)
         setCityList(savedCitiesArr)
         //console.log('cityListState', cityList)
         return (savedCitiesArr)
     }
 
+    const remove = async (id) => {
+        console.log(cityList)
+        await axios.delete(`http://localhost:5000/cities/delete/${id.id}`).then(() => {
+            setCityList(cityList.filter(arr => arr[5] != id.id))
+        })
+        console.log("id", id.id)
+        return (cityList)
+
+    }
+
+
     const seeSavedCities = (
         cityList.map(elem => (
-            <Cities key={elem[1]}
+            <SavedCities key={elem[5]}
+                remove={remove}
                 cityName={elem[0]}
-                location={elem[1]}
-                country={elem[2]}
+                country={elem[1]}
+                location={elem[2]}
                 image={elem[3]}
+                id={elem[5]}
                 places={<Places placesInfo={elem[4]} />} />
         ))
     )
 
+
+
+
     // -----------------------------------RETURN STATEMENT-------------------------------------------//
     return (
         <div> {form} <div>
-            <div><button onClick={convertData}>See Saved Cities {seeSavedCities}</button></div>
 
+            <div>
+                <button onClick={convertsavedCitiesData}>See Saved Cities</button>
+                {seeSavedCities}
+            </div>
 
 
             {cityComponents.map(elem => (
