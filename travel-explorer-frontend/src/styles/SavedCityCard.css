@@ -32,8 +32,8 @@
 #imageDiv {
   width: 412px;
   margin-top: 10px;
-  border-color: red;
-  border-style: solid;
+  /* border-color: red;
+  border-style: solid; */
 }
 
 #cityImage {
@@ -44,7 +44,19 @@
   position: relative;
 }
 
+#placesDiv {
+  display: flex;
+}
 
-#places {
-  position: relative;
+#deleteBtn {
+  background-color: white;
+  font-family: "Open Sans";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 12px;
+  text-align: center;
+  position: absolute;
+  right: 10px;
+  top: 5px;
+  border-color: white;
 }

@@ -10,11 +10,13 @@ const Places = ({ placesInfo }) => {
 
             <div key={i[0]}>
                 <div id="placeDiv">
-                    Place Name: {i[0]}
-                    <div>
+                    <div id="placeName">
+                        {i[0]}
+                    </div>
+                    <div className="addressAndCategory">
                         Address: {i[1]}
                     </div>
-                    <div>
+                    <div className="addressAndCategory">
                         Category: {i[2]}
                     </div>
                 </div>

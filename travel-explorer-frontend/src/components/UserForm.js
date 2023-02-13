@@ -21,80 +21,37 @@ const UserForm = () => {
     const [message, setMessage] = useState("");
     const [data, setData] = useState("");
 
-    const handleSubmit = async (e) => {
-        e.preventDefault()
-        try {
-            let res = await fetch("http://localhost:5000/cities", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
-                    entertainment: entertainment,
-                    accommodation: accommodation,
-                    tourism: tourism,
-                    catering: catering,
-                    natural: natural
-                })
-            })
+    const [formData, setFormData] = useState({
+        entertainment: "",
+        accommodation: "",
+        natural: "",
+        catering: "",
+        tourism: ""
+    })
 
+    const storeData = (data) => {
+        const stringifiedData = JSON.stringify(data)
+        window.localStorage.setItem("formData", stringifiedData)
+    }
 
-            let resJson = await res.json();
-
-
-            if (res.status === 200) {
-                setEntertainment("");
-                setAccommodation("");
-                setTourism("");
-                setCatering("");
-                setNatural("");
-                setMessage("Data Submitted");
-                setData(resJson);
-                console.log('success message');
-            } else {
-                setMessage("Some error occured");
-                console.log('error message');
+    const handleChange = (e) => {
+        setFormData(prevData => {
+            const updatedForm = {
+                ...prevData,
+                [e.target.name]: e.target.value
             }
-        } catch (err) {
-            console.log(err);
-            return err;
-        }
-
-    };
-
-    const displayCityComponents = (data) => {
-        let finalArr = []
-        const allInfoArr = (Object.entries(data))
-
-        for (let entry in allInfoArr) {
-            let locationDataArr = []
-            const placeObj = Object.entries(allInfoArr[entry][1].places);
-            let allLocationsArr = []
-
-            for (let place in placeObj) {
-                let oneLocationArr = []
-                oneLocationArr.push(placeObj[place][0], placeObj[place][1].address, placeObj[place][1].category);
-                allLocationsArr.push(oneLocationArr);
-
-            }
-
-            locationDataArr.push(allInfoArr[entry][0], allInfoArr[entry][1].name, allInfoArr[entry][1].country, allInfoArr[entry][1].image, allLocationsArr);
-            finalArr.push(locationDataArr);
-        }
-
-        return finalArr;
+            storeData(updatedForm)
+            return updatedForm
+        })
     }
 
 
-    // ----------------MAKE SURE TO PUT DATA PARAM HERE TO USE BACKEND----------------------//
-    const cityComponents = displayCityComponents(data);
-
     const form = (
-        <form onSubmit={handleSubmit}>
+        <form>
             <div className="searchCategories">
                 <label htmlFor="entertainment">What Do You Like to Do for Entertainment?</label>
                 <div className="select">
-                    <select id="entertainment" name="entertainment" onChange={(e) => setEntertainment(e.target.value)}>
+                    <select id="entertainment" name="entertainment" onChange={handleChange}>
                         <option value="entertainment">Surprise Me</option>
                         <option value="entertainment.zoo">Zoo</option>
                         <option value="entertainment.culture">Culture</option>
@@ -107,7 +64,7 @@ const UserForm = () => {
             <div className="searchCategories">
                 <label className="question" htmlFor="accommodation">Where Would You Like To Stay?</label>
                 <div className="select">
-                    <select id="accommodation" name="accommodation" onChange={(e) => setAccommodation(e.target.value)}>
+                    <select id="accommodation" name="accommodation" onChange={handleChange}>
                         <option value="accommodation">Surprise Me</option>
                         <option value="accommodation.hotel">Hotel</option>
                         <option value="accommodation.motel">Motel</option>
@@ -120,7 +77,7 @@ const UserForm = () => {
             <div className="searchCategories">
                 <label className="question" htmlFor="natural">What Would You Like to See in Nature?</label>
                 <div className="select">
-                    <select id="natural" name="natural" onChange={(e) => setNatural(e.target.value)}>
+                    <select id="natural" name="natural" onChange={handleChange}>
                         <option value="natural">Surprise Me</option>
                         <option value="natural.forest">Forest</option>
                         <option value="natural.water">Water</option>
@@ -132,7 +89,7 @@ const UserForm = () => {
             <div className="searchCategories">
                 <label className="question" htmlFor="tourism">What Would You Like to See as a Tourist?</label>
                 <div className="select">
-                    <select id="tourism" name="tourism" onChange={(e) => setTourism(e.target.value)}>
+                    <select id="tourism" name="tourism" onChange={handleChange}>
                         <option value="tourism.sights">Surprise Me</option>
                         <option value="tourism.sights.place_of_worship">Places of Worship</option>
                         <option value="tourism.sights.castle">Castles</option>
@@ -145,7 +102,7 @@ const UserForm = () => {
             <div className="searchCategories">
                 <label className="question" htmlFor="catering">What Kind of Food Would You Like to Eat?</label>
                 <div className="select">
-                    <select id="catering" name="catering" onChange={(e) => setCatering(e.target.value)}>
+                    <select id="catering" name="catering" onChange={handleChange}>
                         <option value="catering">Surprise Me</option>
                         <option value="catering.restaurant.mediterranean">Mediterranean</option>
                         <option value="catering.restaurant.caribbean">Caribbean</option>
@@ -180,16 +137,7 @@ const UserForm = () => {
                 <div id="formDiv"> {form}</div>
 
                 <NavigationBar></NavigationBar>
-                <div>
-                    {cityComponents.map(elem => (
-                        <Cities key={elem[1]}
-                            cityName={elem[0]}
-                            location={elem[1]}
-                            country={elem[2]}
-                            image={elem[3]}
-                            places={<Places placesInfo={elem[4]} />} />
-                    ))}
-                </div>
+
             </div>
 
 

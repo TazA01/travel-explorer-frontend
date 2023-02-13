@@ -1,5 +1,29 @@
 #placeDiv {
-  border-color: purple;
-  border-style: solid;
-  margin: 5px;
+  border-radius: 10px;
+  box-shadow: -3px -3px 10px 4px rgba(0, 0, 0, 0.05),
+    3px 3px 10px 4px rgba(0, 0, 0, 0.05);
+  margin-top: 10px;
+  /* position: relative; */
+}
+
+#placeName {
+  font-family: "Work Sans";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 21px;
+  /* text-align: center; */
+  color: #054a6c;
+  /* text-align: justify; */
+}
+
+.addressAndCategory {
+  font-family: "Open Sans";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 19px;
+  /* identical to box height */
+
+  color: #000000;
 }

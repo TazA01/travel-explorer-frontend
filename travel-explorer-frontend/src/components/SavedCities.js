@@ -14,6 +14,7 @@ const SavedCities = ({ cityName, country, location, image, places, id }) => {
         if (response.data == false) {
             alert('You Have No Saved Cities. Please Save Cities You Want To To Visit!')
         };
+        console.log(response.data)
 
         return response.data;
     };
@@ -45,24 +46,12 @@ const SavedCities = ({ cityName, country, location, image, places, id }) => {
 
     }
 
-    // const seeSavedCities = (
-    //     cityList.map(elem => (
-    //         <SavedCities key={elem[5]}
-    //             remove={remove}
-    //             cityName={elem[0]}
-    //             country={elem[1]}
-    //             location={elem[2]}
-    //             image={elem[3]}
-    //             id={elem[5]}
-    //             places={<Places placesInfo={elem[4]} />} />
-    //     ))
-    // )
-
 
     return (
         <div id="main">
             <h2 id="firstH2">Here are your</h2>
             <h2 id="secondH2">Saved Cities</h2>
+
             {cityList.map(elem => (
                 <SavedCityCard key={elem[5]}
                     remove={remove}

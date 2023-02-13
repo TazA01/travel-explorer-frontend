@@ -1,85 +1,97 @@
 import { React, useEffect, useState } from "react";
-import PropTypes from "prop-types";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
 import items from "../dummydata";
 import Places from "./Places";
 import CityCard from "./CityCard";
-import UserForm from "./UserForm";
 
 
 
-const Cities = ({ cityName, country, image, location, places, data }) => {
+
+const Cities = () => {
+
+    const [data, setData] = useState([]);
+
+    const handleSubmit = async () => {
+        try {
+            let res = await fetch("http://localhost:5000/cities", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: window.localStorage.getItem("formData")
+            })
+
+            let resJson = await res.json();
+            console.log(resJson)
+            const componentData = displayCityComponents(resJson);
+            setData(componentData);
+            console.log("componentData", componentData)
+
+        } catch (err) {
+            console.log(err);
+            return err;
+        }
+
+    };
+
+    const displayCityComponents = (data) => {
+        let finalArr = []
+        const allInfoArr = (Object.entries(data))
+
+        for (let entry in allInfoArr) {
+            let locationDataArr = []
+            const placeObj = Object.entries(allInfoArr[entry][1].places);
+            let allLocationsArr = []
+
+            for (let place in placeObj) {
+                let oneLocationArr = []
+                oneLocationArr.push(placeObj[place][0], placeObj[place][1].address, placeObj[place][1].category);
+                allLocationsArr.push(oneLocationArr);
+
+            }
+
+            locationDataArr.push(allInfoArr[entry][0], allInfoArr[entry][1].name, allInfoArr[entry][1].country, allInfoArr[entry][1].image, allLocationsArr);
+            finalArr.push(locationDataArr);
+        }
+
+        return finalArr;
+    }
 
 
-    // const displayCityComponents = (data) => {
-    //     let finalArr = []
-    //     const allInfoArr = (Object.entries(data))
+    useEffect(() => {
+        handleSubmit()
+    }, [])
+    let storage = window.localStorage.getItem('formData')
 
-    //     for (let entry in allInfoArr) {
-    //         let locationDataArr = []
-    //         const placeObj = Object.entries(allInfoArr[entry][1].places);
-    //         let allLocationsArr = []
-
-    //         for (let place in placeObj) {
-    //             let oneLocationArr = []
-    //             oneLocationArr.push(placeObj[place][0], placeObj[place][1].address, placeObj[place][1].category);
-    //             allLocationsArr.push(oneLocationArr);
-
-    //         }
-
-    //         locationDataArr.push(allInfoArr[entry][0], allInfoArr[entry][1].name, allInfoArr[entry][1].country, allInfoArr[entry][1].image, allLocationsArr);
-    //         finalArr.push(locationDataArr);
-    //     }
-
-    //     return finalArr;
-    // }
-
-    // const cityComponents = displayCityComponents(data);
-
-    const handleSaveClick = async (e) => {
-        e.preventDefault();
+    const handleSaveClick = async (cityName, location, country, image, places) => {
 
         // Send data to the backend via POST
-        let postResults = await fetch('http://localhost:5000/cities/save', {
-            method: 'POST',
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                "city": cityName,
-                "country": country,
-                "fullLocation": location,
-                "image": image,
-                "places": places.props.placesInfo
-            })
+        const postResults = await axios.post('http://localhost:5000/cities/save', {
+            "city": cityName,
+            "country": country,
+            "fullLocation": location,
+            "image": image,
+            "places": places.props.placesInfo
         })
-        //let resJson = await postResults.json();
+
 
     }
 
     return (
         <div className="main-cointainer">
-             <div id="test">
-                <h4>{cityName}, {country}</h4>
-                <button onClick={handleSaveClick}>Save City</button>
-                <div><img src={image} alt="Country"></img></div>
-                <div>Full Location: {location}</div>
-                <div>
-                    {places}
-                </div> 
-            </div> 
 
-            {/* <div>
-                {cityComponents.map(elem => (
+            <div>
+                {data.length === 0 ? <h1>Loading...</h1> : data.map(elem => (
                     <CityCard key={elem[1]}
+                        handleSaveClick={handleSaveClick}
                         cityName={elem[0]}
                         location={elem[1]}
                         country={elem[2]}
                         image={elem[3]}
                         places={<Places placesInfo={elem[4]} />} />
                 ))}
-            </div> */}
+            </div>
+
         </div>
     )
 }

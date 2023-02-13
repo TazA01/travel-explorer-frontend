@@ -12,7 +12,7 @@
     url("https://images.unsplash.com/photo-1498307833015-e7b400441eb8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1828&q=80");
 }
 
-#travelExplorer {
+/* #travelExplorer {
   position: absolute;
   width: 267px;
   height: 141px;
@@ -48,10 +48,10 @@
   line-height: 75px;
   /* identical to box height */
 
-  color: #ffffff;
-}
+  /* color: #ffffff;
+} */
 
-#line {
+/* #line {
   position: absolute;
   width: 216px;
   height: 0px;
@@ -59,7 +59,7 @@
   top: 118px;
 
   border: 8px solid #d6d94c;
-}
+} */ */
 #destinationDiv {
   position: absolute;
   width: 656px;
