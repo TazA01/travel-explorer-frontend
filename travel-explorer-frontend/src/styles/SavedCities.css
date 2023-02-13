@@ -1,0 +1,35 @@
+#main {
+  display: flex;
+}
+
+#firstH2 {
+  position: absolute;
+  height: 49px;
+  left: 642px;
+  top: 160px;
+
+  font-family: "Open Sans";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 36px;
+  line-height: 49px;
+  /* identical to box height */
+
+  color: #000000;
+}
+
+#secondH2 {
+  position: absolute;
+  height: 75px;
+  left: 586px;
+  top: 198px;
+
+  font-family: "Work Sans";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 64px;
+  line-height: 75px;
+  /* identical to box height */
+
+  color: #d6d94c;
+}

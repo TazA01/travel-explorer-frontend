@@ -1,10 +1,12 @@
-import './styles/App.css';
-import './styles/UserForm.css';
-import items from './dummydata';
+// import './styles/UserForm.css';
 import UserForm from './components/UserForm';
 import { useState, useEffect } from 'react';
-
-
+import SavedCities from './components/SavedCities';
+import Cities from './components/Cities';
+import Places from './components/Places';
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import NavigationBar from './components/NavigationBar';
+import './styles/NavigationBar.css'
 
 function App() {
 
@@ -18,13 +20,18 @@ function App() {
 
 
   return (
-    <div>
-      <h1>Travel Explorer</h1>
-      <h2>{message}</h2>
-      {/* to render components */}
-      <UserForm />
+    <main>
+      <NavigationBar />
 
-    </div>
+      <Routes>
+        <Route path='/home' element={<UserForm />}></Route>
+        <Route path='/cities' element={<Cities />}></Route>
+        <Route path='/save' element={<SavedCities />}></Route>
+      </Routes>
+
+    </main >
+
+
 
   );
 }

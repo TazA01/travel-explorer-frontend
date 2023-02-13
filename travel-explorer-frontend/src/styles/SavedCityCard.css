@@ -1,0 +1,50 @@
+#cityDiv {
+  background: #ffffff;
+  box-shadow: -3px -3px 10px 4px rgba(0, 0, 0, 0.05),
+    3px 3px 10px 4px rgba(0, 0, 0, 0.05);
+  border-radius: 10px;
+  position: relative;
+  width: 412px;
+  top: 300px;
+  left: 10px;
+  margin: 10px;
+}
+
+#nameAndCountry {
+  font-family: "Work Sans";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 48px;
+  color: #054a6c;
+  text-align: center;
+}
+
+#location {
+  color: black;
+  font-family: "Work Sans";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+  text-align: center;
+  /* position: relative; */
+}
+
+#imageDiv {
+  width: 412px;
+  margin-top: 10px;
+  border-color: red;
+  border-style: solid;
+}
+
+#cityImage {
+  width: 380px;
+  height: 285px;
+  border-radius: 15px;
+  left: 15px;
+  position: relative;
+}
+
+
+#places {
+  position: relative;
+}
