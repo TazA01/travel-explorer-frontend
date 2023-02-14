@@ -51,6 +51,7 @@ const SavedCities = ({ cityName, country, location, image, places, id }) => {
             <h2 id="firstH2">Here are your</h2>
             <h2 id="secondH2">Saved Cities</h2>
 
+
             {cityList.map(elem => (
                 <SavedCityCard key={elem[5]}
                     remove={remove}
@@ -61,6 +62,7 @@ const SavedCities = ({ cityName, country, location, image, places, id }) => {
                     id={elem[5]}
                     places={<Places placesInfo={elem[4]} />} />
             ))}
+
 
         </div>
     )

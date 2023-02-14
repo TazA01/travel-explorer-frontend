@@ -3,6 +3,9 @@
 
 #citiesMain {
   display: flex;
+  width: 1440px;
+  overflow-x: scroll;
+  overflow-y: hidden;
 }
 
 #start {
@@ -34,7 +37,6 @@
   line-height: 75px;
   color: #d6d94c;
 }
-
 
 .loader {
   position: absolute;
