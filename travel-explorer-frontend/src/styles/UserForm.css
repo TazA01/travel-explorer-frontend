@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&family=Work+Sans:wght@600&display=swap");
 
 #image {
   background-color: blue;
@@ -15,7 +17,7 @@
 
 #choose {
   position: absolute;
-  width: 578px;
+  width: 650px;
   height: 33px;
   left: 380px;
   top: 350px;
@@ -35,7 +37,7 @@
 
 #formDiv {
   position: absolute;
-  width: 390px;
+  width: 420px;
   height: 517px;
   padding-top: 20px;
   left: 526px;
@@ -83,19 +85,20 @@
   line-height: 44px;
   text-align: center;
   color: #ffffff;
-  background: #8f920e;
+  background: #b8bc00;
   border-radius: 5px;
 }
 
 #savedCitiesBtn {
-  background: #8f920e;
+  background: #b8bc00;
   border-radius: 5px;
+  border-color: transparent;
   color: #ffffff;
   width: 150px;
   font-family: "Open Sans";
   font-style: normal;
   font-weight: 600;
-  line-height: 44px;
+  line-height: 20px;
   text-align: center;
   font-size: 18px;
   margin-left: 1200px;

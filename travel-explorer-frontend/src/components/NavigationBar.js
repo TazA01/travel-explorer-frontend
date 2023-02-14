@@ -3,10 +3,13 @@ import { Link } from "react-router-dom";
 const NavigationBar = () => {
     return (
         <main>
+
             <div id="travelExplorer">
-                <h1 id="travel">Travel</h1>
-                <h1 id="line"></h1>
-                <h1 id="explorer" >Explorer</h1>
+                <Link to='/home'>
+                    <h1 id="travel">Travel</h1>
+                    <h1 id="line"></h1>
+                    <h1 id="explorer" >Explorer</h1>
+                </Link>
             </div>
             <div>
                 <Link to='/save'>

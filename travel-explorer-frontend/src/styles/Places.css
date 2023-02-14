@@ -1,8 +1,12 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&family=Work+Sans:wght@600&display=swap");
+
 #placeDiv {
   border-radius: 10px;
   box-shadow: -3px -3px 10px 4px rgba(0, 0, 0, 0.05),
     3px 3px 10px 4px rgba(0, 0, 0, 0.05);
   margin-top: 10px;
+  padding-bottom: 5px;
   /* position: relative; */
 }
 
@@ -14,6 +18,8 @@
   line-height: 21px;
   /* text-align: center; */
   color: #054a6c;
+  padding-left: 10px;
+  padding-top: 5px;
   /* text-align: justify; */
 }
 
@@ -23,7 +29,8 @@
   font-weight: 400;
   font-size: 14px;
   line-height: 19px;
-  /* identical to box height */
-
+  padding-left: 10px;
+  padding-right: 10px;
   color: #000000;
 }
+

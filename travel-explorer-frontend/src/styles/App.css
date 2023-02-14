@@ -1,3 +1,6 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&family=Work+Sans:wght@600&display=swap");
+
 #image {
   /* background-image: url("https://images.unsplash.com/photo-1498307833015-e7b400441eb8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1828&q=80"); */
   position: absolute;
@@ -12,65 +15,17 @@
     url("https://images.unsplash.com/photo-1498307833015-e7b400441eb8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1828&q=80");
 }
 
-/* #travelExplorer {
-  position: absolute;
-  width: 267px;
-  height: 141px;
-  left: 15px;
-}
-
-#travel {
-  position: absolute;
-  width: 191px;
-  height: 75px;
-  left: 49px;
-  top: 28px;
-
-  font-family: "Work Sans";
-  font-style: normal;
-  font-weight: 600;
-  font-size: 64px;
-  line-height: 75px;
-  color: #ffffff;
-}
-
-#explorer {
-  position: absolute;
-  width: 267px;
-  height: 75px;
-  left: 49px;
-  top: 109px;
-
-  font-family: "Work Sans";
-  font-style: normal;
-  font-weight: 600;
-  font-size: 64px;
-  line-height: 75px;
-  /* identical to box height */
-
-  /* color: #ffffff;
-} */
-
-/* #line {
-  position: absolute;
-  width: 216px;
-  height: 0px;
-  left: 54px;
-  top: 118px;
-
-  border: 8px solid #d6d94c;
-} */ */
 #destinationDiv {
   position: absolute;
-  width: 656px;
+  width: 750px;
   height: 129px;
-  left: 75px;
+  left: 20px;
   top: 50px;
 }
 
 #firstDestinationHeader {
   position: absolute;
-  width: 656px;
+  width: 750px;
   height: 54px;
   left: 393px;
   top: 200px;
@@ -82,12 +37,12 @@
   line-height: 54px;
   letter-spacing: 0.04em;
 
-  color: #ffffff;
+  color: white;
 }
 
 #secondDestinationHeader {
   position: absolute;
-  width: 566px;
+  width: 750px;
   height: 75px;
   left: 432px;
   top: 230px;
@@ -106,7 +61,7 @@
   position: absolute;
   width: 578px;
   height: 33px;
-  left: 380px;
+  left: 430px;
   top: 350px;
 
   font-family: "Open Sans";

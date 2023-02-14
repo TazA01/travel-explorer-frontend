@@ -7,6 +7,7 @@ import Places from './components/Places';
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import NavigationBar from './components/NavigationBar';
 import './styles/NavigationBar.css'
+import './styles/App.css'
 
 function App() {
 

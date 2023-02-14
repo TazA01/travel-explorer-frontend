@@ -14,7 +14,6 @@ const SavedCities = ({ cityName, country, location, image, places, id }) => {
         if (response.data == false) {
             alert('You Have No Saved Cities. Please Save Cities You Want To To Visit!')
         };
-        console.log(response.data)
 
         return response.data;
     };

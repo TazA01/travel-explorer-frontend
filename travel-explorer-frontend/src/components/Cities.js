@@ -3,6 +3,7 @@ import axios from "axios";
 import items from "../dummydata";
 import Places from "./Places";
 import CityCard from "./CityCard";
+import '../styles/Cities.css'
 
 
 
@@ -78,19 +79,21 @@ const Cities = () => {
     }
 
     return (
-        <div className="main-cointainer">
+        <div id="citiesMain">
+            <h2 id="start">Let's start</h2>
+            <h2 id="traveling">traveling!</h2>
 
-            <div>
-                {data.length === 0 ? <h1>Loading...</h1> : data.map(elem => (
-                    <CityCard key={elem[1]}
-                        handleSaveClick={handleSaveClick}
-                        cityName={elem[0]}
-                        location={elem[1]}
-                        country={elem[2]}
-                        image={elem[3]}
-                        places={<Places placesInfo={elem[4]} />} />
-                ))}
-            </div>
+            {data.length === 0 ? <h1 class="loader"></h1> : data.map(elem => (
+                <CityCard key={elem[1]}
+                    handleSaveClick={handleSaveClick}
+                    cityName={elem[0]}
+                    location={elem[1]}
+                    country={elem[2]}
+                    image={elem[3]}
+                    places={<Places placesInfo={elem[4]} />} />
+            ))}
+
+
 
         </div>
     )
