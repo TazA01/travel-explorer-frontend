@@ -14,7 +14,7 @@ function App() {
   const [message, setMessage] = useState("");
 
   useEffect(() => {
-    fetch(`https://travel-explorer.azurewebsites.net/`)
+    fetch(`http://localhost:5000/`)
       .then((res) => res.json())
       .then((data) => setMessage(data.message));
   }, []);
