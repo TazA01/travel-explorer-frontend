@@ -10,7 +10,7 @@ const SavedCities = ({ cityName, country, location, image, places, id }) => {
     const [cityList, setCityList] = useState([])
 
     let savedCitiesClick = async () => {
-        let response = await axios.get("http://localhost:5000/cities/save");
+        let response = await axios.get("http://travel-explorer.azurewebsites.net/cities/save");
         if (response.data == false) {
             alert('You Have No Saved Cities. Please Save Cities You Want To To Visit!')
         };
@@ -37,7 +37,7 @@ const SavedCities = ({ cityName, country, location, image, places, id }) => {
 
     const remove = async (id) => {
         console.log(cityList)
-        await axios.delete(`http://localhost:5000/cities/delete/${id.id}`).then(() => {
+        await axios.delete(`http://travel-explorer.azurewebsites.net/cities/delete/${id.id}`).then(() => {
             setCityList(cityList.filter(arr => arr[5] != id.id))
         })
         console.log("id", id.id)

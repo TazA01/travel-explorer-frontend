@@ -1,11 +1,5 @@
 import React, { useEffect, useState } from "react";
-import axios from 'axios';
-import PropTypes from "prop-types";
-import Cities from "./Cities";
-import Places from "./Places";
-import items from "../dummydata";
-import SavedCities from "./SavedCities";
-import { BrowserRouter, Routes, Route, useNavigate, Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import NavigationBar from "./NavigationBar";
 import '../styles/UserForm.css'
 
@@ -13,13 +7,6 @@ import '../styles/UserForm.css'
 
 const UserForm = () => {
 
-    const [entertainment, setEntertainment] = useState("");
-    const [accommodation, setAccommodation] = useState("");
-    const [tourism, setTourism] = useState("");
-    const [catering, setCatering] = useState("");
-    const [natural, setNatural] = useState("");
-    const [message, setMessage] = useState("");
-    const [data, setData] = useState("");
 
     const [formData, setFormData] = useState({
         entertainment: "",

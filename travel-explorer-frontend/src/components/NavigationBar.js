@@ -5,7 +5,7 @@ const NavigationBar = () => {
         <main>
 
             <div id="travelExplorer">
-                <Link to='/home'>
+                <Link to='/'>
                     <h1 id="travel">Travel</h1>
                     <h1 id="line"></h1>
                     <h1 id="explorer" >Explorer</h1>

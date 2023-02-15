@@ -14,7 +14,7 @@ function App() {
   const [message, setMessage] = useState("");
 
   useEffect(() => {
-    fetch(`http://localhost:5000/`)
+    fetch(`http://travel-explorer.azurewebsites.net/`)
       .then((res) => res.json())
       .then((data) => setMessage(data.message));
   }, []);
@@ -25,7 +25,7 @@ function App() {
       <NavigationBar />
 
       <Routes>
-        <Route path='/home' element={<UserForm />}></Route>
+        <Route path='/' element={<UserForm />}></Route>
         <Route path='/cities' element={<Cities />}></Route>
         <Route path='/save' element={<SavedCities />}></Route>
       </Routes>

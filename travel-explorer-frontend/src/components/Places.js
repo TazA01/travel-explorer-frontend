@@ -25,15 +25,6 @@ const Places = ({ placesInfo }) => {
         )
     }))
 
-
-
-    // return (
-    //     <div className="main-cointainer">
-    //         <div>
-    //             <div>City: {places}</div>
-    //         </div>
-    //     </div>
-    // )
 }
 
 

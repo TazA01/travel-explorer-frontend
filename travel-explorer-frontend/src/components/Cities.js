@@ -14,11 +14,12 @@ const Cities = () => {
 
     const handleSubmit = async () => {
         try {
-            let res = await fetch("http://localhost:5000/cities", {
+            let res = await fetch("http://travel-explorer.azurewebsites.net/cities", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                 },
+                mode: 'no-cors',
                 body: window.localStorage.getItem("formData")
             })
 
@@ -67,12 +68,14 @@ const Cities = () => {
     const handleSaveClick = async (cityName, location, country, image, places) => {
 
         // Send data to the backend via POST
-        const postResults = await axios.post('http://localhost:5000/cities/save', {
+        await axios.post('http://travel-explorer.azurewebsites.net/cities/save', {
             "city": cityName,
             "country": country,
             "fullLocation": location,
             "image": image,
             "places": places.props.placesInfo
+        }).then(() => {
+            alert('City Saved')
         })
 
 
@@ -83,7 +86,7 @@ const Cities = () => {
             <h2 id="start">Let's start</h2>
             <h2 id="traveling">traveling!</h2>
 
-            {data.length === 0 ? <h1 class="loader"></h1> : data.map(elem => (
+            {data.length === 0 ? <h1 className="loader"></h1> : data.map(elem => (
                 <CityCard key={elem[1]}
                     handleSaveClick={handleSaveClick}
                     cityName={elem[0]}
