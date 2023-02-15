@@ -14,7 +14,7 @@ const Cities = () => {
 
     const handleSubmit = async () => {
         try {
-            let res = await fetch("http://travel-explorer.azurewebsites.net/cities", {
+            let res = await fetch("https://travel-explorer.azurewebsites.net/cities", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -68,7 +68,7 @@ const Cities = () => {
     const handleSaveClick = async (cityName, location, country, image, places) => {
 
         // Send data to the backend via POST
-        await axios.post('http://travel-explorer.azurewebsites.net/cities/save', {
+        await axios.post('https://travel-explorer.azurewebsites.net/cities/save', {
             "city": cityName,
             "country": country,
             "fullLocation": location,
