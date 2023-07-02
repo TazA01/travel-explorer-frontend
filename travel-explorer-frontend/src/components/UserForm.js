@@ -9,11 +9,11 @@ const UserForm = () => {
 
 
     const [formData, setFormData] = useState({
-        entertainment: "",
-        accommodation: "",
-        natural: "",
-        catering: "",
-        tourism: ""
+        entertainment: "entertainment",
+        accommodation: "accommodation",
+        natural: "natural",
+        catering: "catering",
+        tourism: "tourism"
     })
 
     const storeData = (data) => {

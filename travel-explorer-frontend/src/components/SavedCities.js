@@ -5,7 +5,6 @@ import Places from "./Places";
 import SavedCityCard from "./SavedCityCard";
 import '../styles/SavedCities.css'
 
-
 const SavedCities = ({ cityName, country, location, image, places, id }) => {
     const [cityList, setCityList] = useState([])
 
@@ -36,11 +35,9 @@ const SavedCities = ({ cityName, country, location, image, places, id }) => {
     })
 
     const remove = async (id) => {
-        console.log(cityList)
         await axios.delete(`http://localhost:5000/cities/delete/${id.id}`).then(() => {
             setCityList(cityList.filter(arr => arr[5] != id.id))
         })
-        console.log("id", id.id)
         return (cityList)
 
     }

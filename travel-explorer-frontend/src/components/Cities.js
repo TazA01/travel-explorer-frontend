@@ -23,10 +23,9 @@ const Cities = () => {
             })
 
             let resJson = await res.json();
-            console.log(resJson)
             const componentData = displayCityComponents(resJson);
             setData(componentData);
-            console.log("componentData", componentData)
+
 
         } catch (err) {
             console.log(err);
